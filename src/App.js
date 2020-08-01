@@ -2,9 +2,14 @@
 //-Modules
 import React from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
+import { Switch, Route, NavLink, Link } from "react-router-dom"
 //-Images
 import logo from './images/logo.png'
-
+//-Components
+import ShortFilm from './components/ShortFilms'
+import Commercials from './components/Commercials'
+import About from './components/About'
+ 
 
 //STYLE
 const GlobalStyle = createGlobalStyle`
@@ -103,21 +108,13 @@ const Header = styled.div`
 
   }
 `
-const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  border: 1px solid #000;
-  position: relative;
-  overflow: hidden;
-  margin-top: 0;
-  margin-left: 30px;
-`
 
 
 //MAIN COMPONENT
 function App() {
   return (
     <>
+    
       <GlobalStyle/>
       {/* <BackgroundColor /> */}
       <MainContainer>
@@ -127,28 +124,36 @@ function App() {
 
             <ul className="menu">
               <li>
-                <a className="link link-active" href="#">Short&nbsp;Films</a>
+                <NavLink className="link" activeClassName="link-active" exact to="/">Short&nbsp;Films</NavLink>
               </li>
               <li>
-                <a className="link" href="#">Commercials</a>
+                <NavLink className="link" activeClassName="link-active" to="/commercials">Commercials</NavLink>
               </li>
               <li>
-                <a className="link" href="#">About</a>
+                <NavLink className="link" activeClassName="link-active" to="/about">About</NavLink>
               </li>
             </ul>
 
-            <a href="#">
+            <Link to="/">
               <div className="logoContainer">
                 <img src={logo} alt="Aaron Logo" />
               </div>
-            </a>
+            </Link>
           </div>
         </Header>
 
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/commercials">
+            <Commercials />
+          </Route>
+          <Route exact path="/">
+            <ShortFilm />
+          </Route>
+        </Switch>
 
-        <Wrapper>
-
-        </Wrapper>
       </MainContainer>
     </>
   )
