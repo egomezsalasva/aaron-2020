@@ -86,7 +86,7 @@ const Header = styled.div`
           width: auto; /* BUG Breaks line*/
           position: relative;
           font-family: 'GTHaptikTrial-Light';
-          font-size: 15px;
+          font-size: 14px;
           color: #BFBEB7;
           letter-spacing: 0;
         }
