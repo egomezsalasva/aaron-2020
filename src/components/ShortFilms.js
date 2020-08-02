@@ -2,6 +2,13 @@
 //-Modules
 import React from 'react'
 import styled from 'styled-components'
+//-Components
+import SliderNav from './short-films/SliderNav'
+import Top from './short-films/Top'
+import Bottom from './short-films/Bottom'
+//-Images
+import fireImg from '../images/Fire.png'
+import huevosFritos from '../images/huevosFritos.png'
  
 
 //STYLE
@@ -13,31 +20,8 @@ const Wrapper = styled.div`
   overflow: hidden;
   margin-top: 0;
   margin-left: 30px;
-  .top{
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 42;
-    margin: 30px;
-    span{
-      font-family: 'GTHaptikTrial-Regular';
-      font-size: 14px;
-    }
-    .availabiity{
-      position: absolute;
-      right: 0;
-    }
-  }
-  .bottom{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 30px;
-    font-size: 14px;
-  }
-  .sliderContainer{
+
+  .sliderCompositionContainer{
     position: absolute;
     top: 0;
     left: 0;
@@ -45,67 +29,39 @@ const Wrapper = styled.div`
     height: 100%;
     min-height: 100%;
     overflow: hidden;
+
     .slider{
-      transform: translate3d(0,0,0);
-      will-change: transform;
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      overflow: hidden;
       align-items: center;
-      .sliderInnerWrapper{
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        align-content: center;
-        overflow: hidden;
-      }
-      .sliderNav{
-        position: absolute;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 12;
-        bottom: 0;
-        height: 15px;
-        width: calc(80px * 2);
-        margin: 30px auto;
-        .navContainer{
-          display: flex;
-          list-style: none;
-          padding: 0;
-          position: absolute;
-          left: 0;
-          right: 0;
-          margin: auto;
-          .navItem{
-            backface-visibility: hidden;
-            transform-style: preserve-3d;
-            will-change: transform;
-            cursor: pointer;
-            height: 4px;
-            flex: 0 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      transform: translateX(calc((60vw / 2) - 0vw));
+
+      .slide{
+        padding: 20px;
+
+        .slideImageContainer{
+          width: 60vw;
+          height: 439px;
+          box-shadow: 0 30px 33px -25px rgba(0,0,0,.7);
+
+          .slideImage{
             width: 100%;
-            transition: transform .6s;
-            background:#BFBEB7;
-            margin: 0 2px;
+            height: 100%;
+            object-fit: cover;
           }
-          .navCurrent{
-            transform: scale(1,1.5);
-            background: #000;
-          }
-        }
+        } 
       }
     }
-
   }
 `
+
 
 
 //MAIN COMPONENT
@@ -113,34 +69,34 @@ const ShortFilm = () => {
   return (
     <Wrapper>
 
-      <div className="top">
-          <span>Film Director</span>
-          <span className="availabiity">available from - sep 2020</span>
-      </div>
+      <Top/>
 
-      <div className="bottom">
-        contact me
-      </div>
+      <Bottom/>
 
-      <div className="sliderContainer">
-        <div className="slider">
+      <div className="sliderCompositionContainer">
 
-          <div className="sliderInnerWrapper">
+          <div className="slider">
+
+            <div className="slide">
+              <div className="slideTop">
+
+              </div>
+              <div className="slideImageContainer">
+                <img className="slideImage" src={fireImg} alt="Fire" />
+              </div>
+            </div>
+
+            <div className="slide">
+              <div className="slideImageContainer">
+                <img className="slideImage" src={huevosFritos} alt="Huevos Fritos" />
+              </div>
+            </div>
+
 
           </div>
 
-          <div className="sliderNav">
-            <ul className="navContainer">
-              <li className="navItem navCurrent">
-                <span></span>
-              </li>
-              <li className="navItem">
-                <span></span>
-              </li>            
-            </ul>
-          </div>
+          <SliderNav/>
 
-        </div>
       </div>
 
     </Wrapper>
