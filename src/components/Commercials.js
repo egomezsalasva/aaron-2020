@@ -33,10 +33,9 @@ const Wrapper = styled.div`
     .slider{
       position: absolute;
       top: 0;
-      left: 0;
-      width: calc(((60vw + 40px) * 4));
+      left: calc(50% - 30vw - 20px);
+      width: calc(((60vw + 40px) * ${slidesCommercials.length}));
       height: 100%;
-      align-items: center;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -100,65 +99,65 @@ const Commercials = () => {
 
       <div className="sliderCompositionContainer">
 
-          <div className="slider">
+        <div className="prevTransparentClick"></div>
 
-          <div className="firstHalfSlide">
-              
+        <div className="nextTransparentClick"></div>
+
+        <div className="slider">
+
+          <div className="slide">
+            <div className="slideTop">
+              <div className="title">{slidesCommercials[0].title}</div>
+              <div className="client">{slidesCommercials[0].client}</div>
             </div>
-
-            <div className="slide">
-              <div className="slideTop">
-                <div className="title">{slidesCommercials[0].title}</div>
-                <div className="client">{slidesCommercials[0].client}</div>
-              </div>
-              <div className="slideImageContainer">
-                <img className="slideImage" src={slidesCommercials[0].img} alt={slidesCommercials[0].imgAlt} />
-              </div>
+            <div className="slideImageContainer">
+              <img className="slideImage" src={slidesCommercials[0].img} alt={slidesCommercials[0].imgAlt} />
             </div>
-
-            <div className="slide">
-              <div className="slideTop">
-                  <div className="title">{slidesCommercials[1].title}</div>
-                  <div className="client">{slidesCommercials[1].client}</div>
-              </div>
-              <div className="slideImageContainer">
-                <img className="slideImage" src={slidesCommercials[1].img} alt={slidesCommercials[1].imgAlt} />
-              </div>
-            </div>
-
-            <div className="slide">
-              <div className="slideTop">
-                  <div className="title">{slidesCommercials[2].title}</div>
-                  <div className="client">{slidesCommercials[2].client}</div>
-              </div>
-              <div className="slideImageContainer">
-                <img className="slideImage" src={slidesCommercials[2].img} alt={slidesCommercials[2].imgAlt} />
-              </div>
-            </div>
-
-            <div className="slide">
-              <div className="slideTop">
-                  <div className="title">{slidesCommercials[3].title}</div>
-                  <div className="client">{slidesCommercials[3].client}</div>
-              </div>
-              <div className="slideImageContainer">
-                <img className="slideImage" src={slidesCommercials[3].img} alt={slidesCommercials[3].imgAlt} />
-              </div>
-            </div>
-
-            <div className="slide">
-              <div className="slideTop">
-                  <div className="title">{slidesCommercials[4].title}</div>
-                  <div className="client">{slidesCommercials[4].client}</div>
-              </div>
-              <div className="slideImageContainer">
-                <img className="slideImage" src={slidesCommercials[4].img} alt={slidesCommercials[4].imgAlt} />
-              </div>
-            </div>
-
           </div>
 
-          <SliderNavCommercials />
+          <div className="slide">
+            <div className="slideTop">
+                <div className="title">{slidesCommercials[1].title}</div>
+                <div className="client">{slidesCommercials[1].client}</div>
+            </div>
+            <div className="slideImageContainer">
+              <img className="slideImage" src={slidesCommercials[1].img} alt={slidesCommercials[1].imgAlt} />
+            </div>
+          </div>
+
+          <div className="slide">
+            <div className="slideTop">
+                <div className="title">{slidesCommercials[2].title}</div>
+                <div className="client">{slidesCommercials[2].client}</div>
+            </div>
+            <div className="slideImageContainer">
+              <img className="slideImage" src={slidesCommercials[2].img} alt={slidesCommercials[2].imgAlt} />
+            </div>
+          </div>
+
+          <div className="slide">
+            <div className="slideTop">
+                <div className="title">{slidesCommercials[3].title}</div>
+                <div className="client">{slidesCommercials[3].client}</div>
+            </div>
+            <div className="slideImageContainer">
+              <img className="slideImage" src={slidesCommercials[3].img} alt={slidesCommercials[3].imgAlt} />
+            </div>
+          </div>
+
+          <div className="slide">
+            <div className="slideTop">
+                <div className="title">{slidesCommercials[4].title}</div>
+                <div className="client">{slidesCommercials[4].client}</div>
+            </div>
+            <div className="slideImageContainer">
+              <img className="slideImage" src={slidesCommercials[4].img} alt={slidesCommercials[4].imgAlt} />
+            </div>
+          </div>
+
+        </div>
+
+        <SliderNavCommercials />
 
       </div>
 
