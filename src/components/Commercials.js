@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import gsap from 'gsap/all'
 // import { ScrollTrigger } from "gsap/ScrollTrigger"
 //-Components
-import SliderNavCommercials from './short-films/SliderNavCommercials'
+import SliderNavCommercials from './commercials/SliderNavCommercials'
 import Top from './short-films/Top'
 import Bottom from './short-films/Bottom'
 //-Data

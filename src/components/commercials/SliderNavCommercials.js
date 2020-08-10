@@ -56,6 +56,9 @@ const Wrapper = styled.div`
 
 //MAIN COMPONENT
 const SliderNavCommercials = () => {
+
+    
+
   return (
     <Wrapper>
         <div className="sliderNav">
