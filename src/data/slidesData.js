@@ -1,5 +1,7 @@
+//IMAGE IMPORTS
 import brotherhoodImg from '../images/brotherhood.png'
-
+import rafaNadalImg from '../images/rafaNadal.png'
+import rollingImg from '../images/rolling.png'
 
 const slidesCommercials = [
 
@@ -7,35 +9,37 @@ const slidesCommercials = [
         title: "This Is Brotherhood",
         client: "Brotherhood",
         img: brotherhoodImg,
-        imgAlt: this.client,
+        imgAlt: "Brotherhood",
     },
 
     {
-        title: "This Is Brotherhood",
-        client: "Brotherhood",
-        img: brotherhoodImg,
-        imgAlt: this.client,
+        title: "Rafa Nadal",
+        client: "Kia",
+        img: rafaNadalImg,
+        imgAlt: "Kia",
     },
 
     {
-        title: "This Is Brotherhood",
-        client: "Brotherhood",
-        img: brotherhoodImg,
-        imgAlt: this.client,
+        title: "Keep On Rolling",
+        client: "Rizla",
+        img: rollingImg,
+        imgAlt: "Rizla",
     },
 
     {
-        title: "This Is Brotherhood",
-        client: "Brotherhood",
+        title: "This Is Us",
+        client: "Surf Spirit",
         img: brotherhoodImg,
-        imgAlt: this.client,
+        imgAlt: "Surf Spirit",
     },
 
     {
-        title: "This Is Brotherhood",
-        client: "Brotherhood",
+        title: "Navidad",
+        client: "OP Kilo",
         img: brotherhoodImg,
-        imgAlt: this.client,
+        imgAlt:  "OP Kilo",
     },
 
 ]
+
+export { slidesCommercials }

@@ -8,11 +8,8 @@ import gsap from 'gsap/all'
 import SliderNavCommercials from './short-films/SliderNavCommercials'
 import Top from './short-films/Top'
 import Bottom from './short-films/Bottom'
-//-Images
-import brotherhoodImg from '../images/brotherhood.png'
-import rafaNadalImg from '../images/rafaNadal.png'
-import rollingImg from '../images/rolling.png'
- 
+//-Data
+ import { slidesCommercials } from '../data/slidesData'
 
 //STYLE
 const Wrapper = styled.div`
@@ -93,37 +90,6 @@ const Wrapper = styled.div`
 //MAIN COMPONENT
 const Commercials = () => {
 
-  const slideRef01 = useRef()
-  const slideRef02 = useRef()
-  const slideRef03 = useRef()
-  const slideRef04 = useRef()
-
-  const listSlideRefs = [slideRef01, slideRef02, slideRef03, slideRef04]
-
-  useEffect(() => {
-    listSlideRefs.current.forEach((el, index) => {
-      gsap.fromTo(
-        el,
-        {
-          filter: 'blur(2px)'
-        },
-        {
-          duration: 1.2,
-          ease: 'power2',
-          filter: 'blur(0px)',
-          scale: 1.2,
-          scrollTrigger: {
-            id: `section-${index + 1}`,
-            trigger: el,
-            start: 'left',
-            toggleActions: 'play none none none',
-            horizontal: true
-          }
-        }
-      )
-    })
-  }, [])
-
 
   return (
     <Wrapper>
@@ -140,43 +106,53 @@ const Commercials = () => {
               
             </div>
 
-            <div className="slide" ref={el => slideRef01 = el}>
+            <div className="slide">
               <div className="slideTop">
-                <div className="title">This Is Brotherhood</div>
-                <div className="client">Brotherhood</div>
+                <div className="title">{slidesCommercials[0].title}</div>
+                <div className="client">{slidesCommercials[0].client}</div>
               </div>
               <div className="slideImageContainer">
-                <img className="slideImage" src={brotherhoodImg} alt="Brotherhhod" />
+                <img className="slideImage" src={slidesCommercials[0].img} alt={slidesCommercials[0].imgAlt} />
               </div>
             </div>
 
-            <div className="slide" ref={el => slideRef02 = el}>
+            <div className="slide">
               <div className="slideTop">
-                  <div className="title">Rafa Nadal</div>
-                  <div className="client">Kia</div>
+                  <div className="title">{slidesCommercials[1].title}</div>
+                  <div className="client">{slidesCommercials[1].client}</div>
               </div>
               <div className="slideImageContainer">
-                <img className="slideImage" src={rafaNadalImg} alt="Huevos Fritos" />
+                <img className="slideImage" src={slidesCommercials[1].img} alt={slidesCommercials[1].imgAlt} />
               </div>
             </div>
 
-            <div className="slide" ref={el => slideRef03 = el}>
+            <div className="slide">
               <div className="slideTop">
-                  <div className="title">Rolling</div>
-                  <div className="client">Rizla</div>
+                  <div className="title">{slidesCommercials[2].title}</div>
+                  <div className="client">{slidesCommercials[2].client}</div>
               </div>
               <div className="slideImageContainer">
-                <img className="slideImage" src={rollingImg} alt="Huevos Fritos" />
+                <img className="slideImage" src={slidesCommercials[2].img} alt={slidesCommercials[2].imgAlt} />
               </div>
             </div>
 
-            <div className="slide" ref={el => slideRef04 = el}>
+            <div className="slide">
               <div className="slideTop">
-                  <div className="title">Rolling</div>
-                  <div className="client">Rizla</div>
+                  <div className="title">{slidesCommercials[3].title}</div>
+                  <div className="client">{slidesCommercials[3].client}</div>
               </div>
               <div className="slideImageContainer">
-                <img className="slideImage" src={rollingImg} alt="Huevos Fritos" />
+                <img className="slideImage" src={slidesCommercials[3].img} alt={slidesCommercials[3].imgAlt} />
+              </div>
+            </div>
+
+            <div className="slide">
+              <div className="slideTop">
+                  <div className="title">{slidesCommercials[4].title}</div>
+                  <div className="client">{slidesCommercials[4].client}</div>
+              </div>
+              <div className="slideImageContainer">
+                <img className="slideImage" src={slidesCommercials[4].img} alt={slidesCommercials[4].imgAlt} />
               </div>
             </div>
 
