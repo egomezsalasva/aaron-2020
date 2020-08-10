@@ -1,16 +1,17 @@
 //IMPORTS
 //-Modules
-import React from 'react'
+import React, { useRef, useEffect  } from 'react'
 import styled from 'styled-components'
-// import gsap from 'gsap/all'
+import gsap from 'gsap/all'
 // import { ScrollTrigger } from "gsap/ScrollTrigger"
 //-Components
-import SliderNavShortFilm from './short-films/SliderNavShortFilm'
+import SliderNavCommercials from './short-films/SliderNavCommercials'
 import Top from './short-films/Top'
 import Bottom from './short-films/Bottom'
 //-Images
-import fireImg from '../images/Fire.png'
-import huevosFritos from '../images/huevosFritos.png'
+import brotherhoodImg from '../images/brotherhood.png'
+import rafaNadalImg from '../images/rafaNadal.png'
+import rollingImg from '../images/rolling.png'
  
 
 //STYLE
@@ -36,14 +37,12 @@ const Wrapper = styled.div`
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
+      width: calc(((60vw + 40px) * 4));
       height: 100%;
       align-items: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100%;
-      transform: translateX(calc((60vw / 2) - 0vw));
 
       .slide{
         padding: 20px;
@@ -66,7 +65,6 @@ const Wrapper = styled.div`
             position: absolute;
             right: 0;
             display: inline-block;
-            cursor: pointer;
             font-family: 'GTHaptikTrial-Regular';
             font-size: 12px;
           }
@@ -93,54 +91,20 @@ const Wrapper = styled.div`
 
 
 //MAIN COMPONENT
-const ShortFilm = () => {
-
-  // const slideTl = gsap.timeline()
-
-  // const huevosFritosClickHandler = () => {
-  //   console.log("test")
-  //   slideTl.to(".slider", { x: "-30vw", duration: 1, })
-  // }
-
+const Commercials = () => {
 
   return (
-    <Wrapper>
-
-      <Top/>
-
-      <Bottom/>
-
-      <div className="sliderCompositionContainer">
-
-          <div className="slider">
-
-            <div className="slide">
-              <div className="slideTop">
-                <div className="title">Fire</div>
-                <div className="description"><span>+</span>&nbsp; decription</div>
-              </div>
-              <div className="slideImageContainer">
-                <img className="slideImage" src={fireImg} alt="Fire" />
-              </div>
+    <>
+        <div className="slide" ref={el => slideRef01 = el}>
+            <div className="slideTop">
+            <div className="title">This Is Brotherhood</div>
+            <div className="description">Brotherhood</div>
             </div>
-
-            <div className="slide">
-              <div className="slideTop">
-                  <div className="title">Huevos Fritos</div>
-                  <div className="description"><span>+</span>&nbsp; decription</div>
-              </div>
-              <div className="slideImageContainer">
-                <img className="slideImage" src={huevosFritos} alt="Huevos Fritos" />
-              </div>
+            <div className="slideImageContainer">
+            <img className="slideImage" src={brotherhoodImg} alt="Fire" />
             </div>
-
-          </div>
-
-          <SliderNavShortFilm />
-
-      </div>
-
-    </Wrapper>
+        </div>
+    </>
   )
 }
-export default ShortFilm
+export default Slide

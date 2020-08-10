@@ -55,7 +55,7 @@ const Wrapper = styled.div`
 
 
 //MAIN COMPONENT
-const SliderNav = () => {
+const SliderNavShortFilm = () => {
   return (
     <Wrapper>
         <div className="sliderNav">
@@ -67,6 +67,10 @@ const SliderNav = () => {
 
                 <li className="navItem">
                     <span></span>
+                </li> 
+
+                <li className="navItem">
+                    <span></span>
                 </li>   
                          
             </ul>
@@ -75,4 +79,4 @@ const SliderNav = () => {
     
   )
 }
-export default SliderNav
+export default SliderNavShortFilm
