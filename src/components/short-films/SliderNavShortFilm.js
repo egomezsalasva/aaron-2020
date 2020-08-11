@@ -67,11 +67,7 @@ const SliderNavShortFilm = () => {
 
                 <li className="navItem">
                     <span></span>
-                </li> 
-
-                <li className="navItem">
-                    <span></span>
-                </li>   
+                </li>  
                          
             </ul>
         </div>

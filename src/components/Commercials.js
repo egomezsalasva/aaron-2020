@@ -1,6 +1,6 @@
 //IMPORTS
 //-Modules
-import React, { useRef, useEffect  } from 'react'
+import React, { useState, useRef, useEffect  } from 'react'
 import styled from 'styled-components'
 import gsap from 'gsap/all'
 // import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -30,11 +30,32 @@ const Wrapper = styled.div`
     min-height: 100%;
     overflow: hidden;
 
+
+    .prevTransparentClick{
+      position: absolute;
+      height: 439px;
+      z-index: 500;
+      left:0;
+      top: calc(50% - (439px / 2));
+      background: red;
+      opacity: 0;
+    }
+
+    .nextTransparentClick{
+      position: absolute;
+      height: 439px;
+      z-index: 500;
+      right:0;
+      top: calc(50% - (439px / 2));
+      background: red;
+      opacity: 0;
+    }
+
     .slider{
       position: absolute;
       top: 0;
       left: calc(50% - 30vw - 20px);
-      width: calc(((60vw + 40px) * ${slidesCommercials.length}));
+      width: calc(((60vw + 20px + 20px) * ${slidesCommercials.length}));
       height: 100%;
       display: flex;
       align-items: center;
@@ -81,6 +102,7 @@ const Wrapper = styled.div`
         } 
       }
     }
+
   }
 `
 
@@ -88,6 +110,55 @@ const Wrapper = styled.div`
 
 //MAIN COMPONENT
 const Commercials = () => {
+
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const vw = (coef) => window.innerWidth * (coef/100)
+  const calcSlideWidth = `${vw(60) + 40}px`
+
+  useEffect( () => {
+    const boxContainerWidth = document.querySelector(".sliderCompositionContainer").clientWidth
+    const sizeOfSideSlide = (boxContainerWidth - 80 - vw(60)) / 2
+    document.querySelector(".prevTransparentClick").style.width = `${sizeOfSideSlide}px`
+    document.querySelector(".nextTransparentClick").style.width = `${sizeOfSideSlide}px`
+  }, [])
+  
+
+
+  const nextHandler = () => {
+    const nextTl = gsap.timeline()
+    if(currentSlide < (slidesCommercials.length - 1)){
+      nextTl.to(".slider", { duration: 1, x: `-=${calcSlideWidth}` })
+      setCurrentSlide(currentSlide + 1)
+    }  
+  }
+  const prevHandler = () => {
+    const prevTl = gsap.timeline()
+    if(currentSlide > 0){
+      prevTl.to(".slider", { duration: 1, x: `+=${calcSlideWidth}` })
+      setCurrentSlide(currentSlide - 1)
+    } 
+  }
+
+  let infoRef01 = useRef(null)
+  let infoRef02 = useRef(null)
+
+  if(currentSlide === 0){
+    const nextTl = gsap.timeline()
+    nextTl.to( infoRef02.current , { duration: 1, y: "0px"})
+    nextTl.to( infoRef01.current , { duration: 1, y: "-25px"}, "-=0.75")
+  }
+
+  useEffect( () => {
+    const nextTl = gsap.timeline()
+    nextTl.to( infoRef01.current , { duration: 1, y: "-25px"})
+  }, [])
+
+  if(currentSlide === 1){
+    const nextTl = gsap.timeline()
+    nextTl.to( infoRef01.current , { duration: 1, y: "0px"})
+    nextTl.to( infoRef02.current , { duration: 1, y: "-25px"}, "-=0.75")
+  }
 
 
   return (
@@ -99,14 +170,13 @@ const Commercials = () => {
 
       <div className="sliderCompositionContainer">
 
-        <div className="prevTransparentClick"></div>
-
-        <div className="nextTransparentClick"></div>
+        <div className="nextTransparentClick" onClick={() => {nextHandler()}}></div>
+        <div className="prevTransparentClick" onClick={() => {prevHandler()}}></div>
 
         <div className="slider">
 
           <div className="slide">
-            <div className="slideTop">
+            <div className="slideTop" ref={infoRef01}>
               <div className="title">{slidesCommercials[0].title}</div>
               <div className="client">{slidesCommercials[0].client}</div>
             </div>
@@ -116,7 +186,7 @@ const Commercials = () => {
           </div>
 
           <div className="slide">
-            <div className="slideTop">
+            <div className="slideTop" ref={infoRef02}>
                 <div className="title">{slidesCommercials[1].title}</div>
                 <div className="client">{slidesCommercials[1].client}</div>
             </div>

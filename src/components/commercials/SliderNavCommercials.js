@@ -2,6 +2,8 @@
 //-Modules
 import React from 'react'
 import styled from 'styled-components'
+//-Data
+import { slidesCommercials } from '../../data/slidesData'
  
 
 //STYLE
@@ -16,7 +18,7 @@ const Wrapper = styled.div`
       align-items: center;
       z-index: 12;
       height: 12px;
-      width: calc(80px * 2);
+      width: calc(80px * ${slidesCommercials.length});
       margin: 30px auto;
 
         .navContainer{
@@ -57,29 +59,28 @@ const Wrapper = styled.div`
 //MAIN COMPONENT
 const SliderNavCommercials = () => {
 
-    
+    // const [currentSlide, setCurrentSlide] = useState(0)
 
-  return (
-    <Wrapper>
-        <div className="sliderNav">
-            <ul className="navContainer">
 
-                <li className="navItem navCurrent">
-                    <span></span>
-                </li>
+    return (
+        <Wrapper>
+            <div className="sliderNav">
+                <ul className="navContainer">
 
-                <li className="navItem">
-                    <span></span>
-                </li> 
+                    {/* <li className="navItem navCurrent">
+                        <span></span>
+                    </li> */}
 
-                <li className="navItem">
-                    <span></span>
-                </li>   
-                         
-            </ul>
-        </div>
-    </Wrapper>
-    
-  )
+                    {slidesCommercials.map( slide => {
+                        return  <li className={"navItem"} key={slide.id}>
+                                    <span></span>
+                                </li>
+                    })}
+                            
+                </ul>
+            </div>
+        </Wrapper>
+        
+    )
 }
 export default SliderNavCommercials

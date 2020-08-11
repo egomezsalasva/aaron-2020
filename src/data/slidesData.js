@@ -6,6 +6,7 @@ import rollingImg from '../images/rolling.png'
 const slidesCommercials = [
 
     {
+        id: 0,
         title: "This Is Brotherhood",
         client: "Brotherhood",
         img: brotherhoodImg,
@@ -13,6 +14,7 @@ const slidesCommercials = [
     },
 
     {
+        id: 1,
         title: "Rafa Nadal",
         client: "Kia",
         img: rafaNadalImg,
@@ -20,6 +22,7 @@ const slidesCommercials = [
     },
 
     {
+        id: 2,
         title: "Keep On Rolling",
         client: "Rizla",
         img: rollingImg,
@@ -27,6 +30,7 @@ const slidesCommercials = [
     },
 
     {
+        id: 3,
         title: "This Is Us",
         client: "Surf Spirit",
         img: brotherhoodImg,
@@ -34,6 +38,7 @@ const slidesCommercials = [
     },
 
     {
+        id: 4,
         title: "Navidad",
         client: "OP Kilo",
         img: brotherhoodImg,
