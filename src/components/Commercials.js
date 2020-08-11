@@ -68,7 +68,6 @@ const Wrapper = styled.div`
           position: relative;
           z-index: 50;
           width: 60vw;
-          /* transform: translateY(-25px); */
           transform: translateY(0px);
 
           .title{
@@ -113,51 +112,61 @@ const Commercials = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0)
 
-  const vw = (coef) => window.innerWidth * (coef/100)
-  const calcSlideWidth = `${vw(60) + 40}px`
+  const slideTl = gsap.timeline()
 
-  useEffect( () => {
-    const boxContainerWidth = document.querySelector(".sliderCompositionContainer").clientWidth
-    const sizeOfSideSlide = (boxContainerWidth - 80 - vw(60)) / 2
-    document.querySelector(".prevTransparentClick").style.width = `${sizeOfSideSlide}px`
-    document.querySelector(".nextTransparentClick").style.width = `${sizeOfSideSlide}px`
-  }, [])
+  //Function to calculate the ViewportWidth in pixels
+    const vw = (coef) => window.innerWidth * (coef/100)
+  //
+
+  //Width of the middle slide + its side margins
+    const calcSlideWidth = `${vw(60) + 20 + 20}px`
+  //
+
+  //Make Transparent Buttons The Right Width
+    useEffect( () => {
+      const boxContainerWidth = document.querySelector(".sliderCompositionContainer").clientWidth
+      const sizeOfSideSlide = (boxContainerWidth - 80 - vw(60)) / 2
+      document.querySelector(".prevTransparentClick").style.width = `${sizeOfSideSlide}px`
+      document.querySelector(".nextTransparentClick").style.width = `${sizeOfSideSlide}px`
+    }, [])
+  // TODO reload on window width resize
   
 
+  //Animate the image slides
+    const nextHandler = () => {
+      if(currentSlide < (slidesCommercials.length - 1)){
+        slideTl.to(".slider", { duration: 1, x: `-=${calcSlideWidth}` })
+        setCurrentSlide(currentSlide + 1)
+      }  
+    }
+    const prevHandler = () => {
+      if(currentSlide > 0){
+        slideTl.to(".slider", { duration: 1, x: `+=${calcSlideWidth}` })
+        setCurrentSlide(currentSlide - 1)
+      } 
+    }
+  //TODO If timeline is animating stop handlers
 
-  const nextHandler = () => {
-    const nextTl = gsap.timeline()
-    if(currentSlide < (slidesCommercials.length - 1)){
-      nextTl.to(".slider", { duration: 1, x: `-=${calcSlideWidth}` })
-      setCurrentSlide(currentSlide + 1)
-    }  
-  }
-  const prevHandler = () => {
-    const prevTl = gsap.timeline()
-    if(currentSlide > 0){
-      prevTl.to(".slider", { duration: 1, x: `+=${calcSlideWidth}` })
-      setCurrentSlide(currentSlide - 1)
-    } 
-  }
+
 
   let infoRef01 = useRef(null)
   let infoRef02 = useRef(null)
+  let infoRef03 = useRef(null)
+  let infoRef04 = useRef(null)
+  let infoRef05 = useRef(null)
+  //First Slide Autoanimate titles
+    useEffect( () => {
+      slideTl.to( infoRef01.current , { duration: 1, y: "-25px"}, "-=1")
+    }, [])
+  //
 
   if(currentSlide === 0){
-    const nextTl = gsap.timeline()
-    nextTl.to( infoRef02.current , { duration: 1, y: "0px"})
-    nextTl.to( infoRef01.current , { duration: 1, y: "-25px"}, "-=0.75")
+    slideTl.to( infoRef02.current , { duration: 1, y: "0px"})
+    slideTl.to( infoRef01.current , { duration: 1, y: "-25px"}, "-=0.75")
   }
-
-  useEffect( () => {
-    const nextTl = gsap.timeline()
-    nextTl.to( infoRef01.current , { duration: 1, y: "-25px"})
-  }, [])
-
   if(currentSlide === 1){
-    const nextTl = gsap.timeline()
-    nextTl.to( infoRef01.current , { duration: 1, y: "0px"})
-    nextTl.to( infoRef02.current , { duration: 1, y: "-25px"}, "-=0.75")
+    slideTl.to( infoRef01.current , { duration: 1, y: "0px"})
+    slideTl.to( infoRef02.current , { duration: 1, y: "-25px"}, "-=0.75")
   }
 
 
@@ -196,7 +205,7 @@ const Commercials = () => {
           </div>
 
           <div className="slide">
-            <div className="slideTop">
+            <div className="slideTop" ref={infoRef03}>
                 <div className="title">{slidesCommercials[2].title}</div>
                 <div className="client">{slidesCommercials[2].client}</div>
             </div>
@@ -206,7 +215,7 @@ const Commercials = () => {
           </div>
 
           <div className="slide">
-            <div className="slideTop">
+            <div className="slideTop" ref={infoRef04}>
                 <div className="title">{slidesCommercials[3].title}</div>
                 <div className="client">{slidesCommercials[3].client}</div>
             </div>
@@ -216,7 +225,7 @@ const Commercials = () => {
           </div>
 
           <div className="slide">
-            <div className="slideTop">
+            <div className="slideTop" ref={infoRef05}>
                 <div className="title">{slidesCommercials[4].title}</div>
                 <div className="client">{slidesCommercials[4].client}</div>
             </div>
