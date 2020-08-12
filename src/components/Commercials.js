@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import gsap from 'gsap/all'
 // import { ScrollTrigger } from "gsap/ScrollTrigger"
 //-Components
-import SliderNavCommercials from './commercials/SliderNavCommercials'
+// import SliderNavCommercials from './commercials/SliderNavCommercials'
 import Top from './short-films/Top'
 import Bottom from './short-films/Bottom'
 //-Data
@@ -100,6 +100,42 @@ const Wrapper = styled.div`
             object-fit: cover;
           }
         } 
+      }
+    }
+
+    .sliderNav{
+      position: absolute;
+      left: calc(50% - 30vw);
+      right: 0;
+      bottom: 33px;
+      width: 60vw;
+      height: 20px;
+      
+      .navContainer{
+        position: absolute;
+        list-style: none;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        overflow: hidden;
+
+        .navItem{
+          display: inline-block;
+          width: 80px;
+          height: 20px;
+          margin: 0 2px;
+          overflow: hidden;
+          transform: translateY(3px);
+
+          span{
+            position: absolute;
+            bottom: 0;
+            width: 80px;
+            height: 12px;
+            background: #BFBEB7;
+            transform: translateY(7px);
+          }
+        }
       }
     }
 
@@ -213,7 +249,11 @@ const Commercials = () => {
   }
 
 
-
+  let navItemRef0 = useRef()
+  let navItemRef1 = useRef()
+  let navItemRef2 = useRef()
+  let navItemRef3 = useRef()
+  let navItemRef4 = useRef()
 
   return (
     <Wrapper>
@@ -281,7 +321,28 @@ const Commercials = () => {
 
         </div>
 
-        <SliderNavCommercials currentSlide={currentSlide}/>
+        {/* <SliderNavCommercials currentSlide={currentSlide}/> */}
+        <div className="sliderNav">
+          <ul className="navContainer">
+            <li className="navItem" ref={navItemRef0}>
+                <span></span>
+            </li>
+
+            <li className="navItem" ref={navItemRef1}>
+                <span></span>
+            </li>
+
+            <li className="navItem" ref={navItemRef2}>
+                <span></span>
+            </li>
+
+            <li className="navItem" ref={navItemRef3}>
+                <span></span>
+            </li>
+
+            <li className="navItem" ref={navItemRef4}><span></span></li>         
+          </ul>
+        </div>
 
       </div>
 
