@@ -10,7 +10,7 @@ import Top from './short-films/Top'
 import Bottom from './short-films/Bottom'
 //-Data
  import { slidesCommercials } from '../data/slidesData'
- import playCursor from '../images/triangleCursor.png'
+//  import playCursor from '../images/triangleCursor.png'
 
 //STYLE
 const Wrapper = styled.div`
@@ -181,9 +181,9 @@ const Commercials = () => {
     let test = document.querySelector(".slide0")
     console.log(test)
     if(currentSlide === 0){
-      test.style.cursor = `url(${playCursor})`
+      test.style.cursor = 'url("https://aarondormer.netlify.app/images/playCursor.png")'
     } else {
-      test.style.cursor = "auto"
+      test.style.cursor = "pointer"
     }
   }, [currentSlide])
 
