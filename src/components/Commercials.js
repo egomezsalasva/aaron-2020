@@ -10,6 +10,7 @@ import Top from './short-films/Top'
 import Bottom from './short-films/Bottom'
 //-Data
  import { slidesCommercials } from '../data/slidesData'
+ import playCursor from '../images/triangleCursor.png'
 
 //STYLE
 const Wrapper = styled.div`
@@ -112,7 +113,9 @@ const Commercials = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0)
 
-  const slideTl = gsap.timeline()
+  let sliderRef = useRef(null)
+  const slideTl = gsap.timeline({paused: true})
+  const textTl = gsap.timeline()
 
   //Function to calculate the ViewportWidth in pixels
     const vw = (coef) => window.innerWidth * (coef/100)
@@ -133,41 +136,83 @@ const Commercials = () => {
   
 
   //Animate the image slides
-    const nextHandler = () => {
+    const animateToNextSlide = () => {
       if(currentSlide < (slidesCommercials.length - 1)){
-        slideTl.to(".slider", { duration: 1, x: `-=${calcSlideWidth}` })
-        setCurrentSlide(currentSlide + 1)
+          slideTl.to(sliderRef.current, { duration: 1, x: `-=${calcSlideWidth}` }).play()
+          setCurrentSlide(currentSlide + 1)
       }  
     }
-    const prevHandler = () => {
-      if(currentSlide > 0){
-        slideTl.to(".slider", { duration: 1, x: `+=${calcSlideWidth}` })
-        setCurrentSlide(currentSlide - 1)
+    const animateToPrevSlide = () => {
+      if(currentSlide > 0 ){
+          slideTl.to(sliderRef.current, { duration: 1, x: `+=${calcSlideWidth}` }).play()
+          setCurrentSlide(currentSlide - 1)
       } 
     }
+
+    // const wheelHandler = e => {
+    //   if( e.deltaY > 0 ){
+    //     if(!slideTl.isActive()){
+    //       animateToNextSlide()
+    //     } 
+    //   } else if ( e.deltaY < 0 ){
+    //     e.preventDefault()
+    //     animateToPrevSlide()
+    //   }
+    // }
+
   //TODO If timeline is animating stop handlers
 
 
 
-  let infoRef01 = useRef(null)
-  let infoRef02 = useRef(null)
-  let infoRef03 = useRef(null)
-  let infoRef04 = useRef(null)
-  let infoRef05 = useRef(null)
+  let infoRef0 = useRef()
+  let infoRef1 = useRef()
+  let infoRef2 = useRef()
+  let infoRef3 = useRef()
+  let infoRef4 = useRef()
   //First Slide Autoanimate titles
-    useEffect( () => {
-      slideTl.to( infoRef01.current , { duration: 1, y: "-25px"}, "-=1")
-    }, [])
+    // useEffect( () => {
+    //   textTl.to( infoRef01.current , { duration: 1, y: "-25px"})
+    // }, [])
   //
 
+  textTl.addLabel("delay01", "+=0.5")
+
+  useEffect(() => {
+    let test = document.querySelector(".slide0")
+    console.log(test)
+    if(currentSlide === 0){
+      test.style.cursor = `url(${playCursor})`
+    } else {
+      test.style.cursor = "auto"
+    }
+  }, [currentSlide])
+
+
   if(currentSlide === 0){
-    slideTl.to( infoRef02.current , { duration: 1, y: "0px"})
-    slideTl.to( infoRef01.current , { duration: 1, y: "-25px"}, "-=0.75")
+    textTl.to( infoRef1.current , { duration: 1, y: "0px"})
+          .to( infoRef0.current , { duration: 1, y: "-25px"}, "delay01");
   }
   if(currentSlide === 1){
-    slideTl.to( infoRef01.current , { duration: 1, y: "0px"})
-    slideTl.to( infoRef02.current , { duration: 1, y: "-25px"}, "-=0.75")
+    textTl.to( infoRef0.current , { duration: 1, y: "0px"})    
+          .to( infoRef1.current , { duration: 1, y: "-25px"}, "delay01")
+          .to( infoRef2.current , { duration: 1, y: "0px"}, "-=1.5")
   }
+  if(currentSlide === 2){
+    textTl.to( infoRef1.current , { duration: 1, y: "0px"})
+          .to( infoRef2.current , { duration: 1, y: "-25px"}, "delay01")
+          .to( infoRef3.current , { duration: 1, y: "0px"}, "-=1.5")
+  }
+  if(currentSlide === 3){
+    textTl.to( infoRef2.current , { duration: 1, y: "0px"})
+          .to( infoRef3.current , { duration: 1, y: "-25px"}, "delay01")
+          .to( infoRef4.current , { duration: 1, y: "0px"}, "-=1.5")
+  }
+  if(currentSlide === 4){
+    textTl.to( infoRef3.current , { duration: 1, y: "0px"})
+          .to( infoRef4.current , { duration: 1, y: "-25px"}, "delay01")
+  }
+
+
 
 
   return (
@@ -179,23 +224,23 @@ const Commercials = () => {
 
       <div className="sliderCompositionContainer">
 
-        <div className="nextTransparentClick" onClick={() => {nextHandler()}}></div>
-        <div className="prevTransparentClick" onClick={() => {prevHandler()}}></div>
+        <div className="nextTransparentClick" onClick={ !slideTl.isActive() ? animateToNextSlide : null }></div>
+        <div className="prevTransparentClick" onClick={() => {animateToPrevSlide()}}></div>
 
-        <div className="slider">
+        <div className="slider" ref={sliderRef}>
 
           <div className="slide">
-            <div className="slideTop" ref={infoRef01}>
+            <div className="slideTop" ref={infoRef0} style={{transform: `translateY(-25px)`}}>
               <div className="title">{slidesCommercials[0].title}</div>
               <div className="client">{slidesCommercials[0].client}</div>
             </div>
-            <div className="slideImageContainer">
+            <div className="slideImageContainer slide0">
               <img className="slideImage" src={slidesCommercials[0].img} alt={slidesCommercials[0].imgAlt} />
             </div>
           </div>
 
           <div className="slide">
-            <div className="slideTop" ref={infoRef02}>
+            <div className="slideTop" ref={infoRef1}>
                 <div className="title">{slidesCommercials[1].title}</div>
                 <div className="client">{slidesCommercials[1].client}</div>
             </div>
@@ -205,7 +250,7 @@ const Commercials = () => {
           </div>
 
           <div className="slide">
-            <div className="slideTop" ref={infoRef03}>
+            <div className="slideTop" ref={infoRef2}>
                 <div className="title">{slidesCommercials[2].title}</div>
                 <div className="client">{slidesCommercials[2].client}</div>
             </div>
@@ -215,7 +260,7 @@ const Commercials = () => {
           </div>
 
           <div className="slide">
-            <div className="slideTop" ref={infoRef04}>
+            <div className="slideTop" ref={infoRef3}>
                 <div className="title">{slidesCommercials[3].title}</div>
                 <div className="client">{slidesCommercials[3].client}</div>
             </div>
@@ -225,7 +270,7 @@ const Commercials = () => {
           </div>
 
           <div className="slide">
-            <div className="slideTop" ref={infoRef05}>
+            <div className="slideTop" ref={infoRef4}>
                 <div className="title">{slidesCommercials[4].title}</div>
                 <div className="client">{slidesCommercials[4].client}</div>
             </div>
@@ -236,7 +281,7 @@ const Commercials = () => {
 
         </div>
 
-        <SliderNavCommercials />
+        <SliderNavCommercials currentSlide={currentSlide}/>
 
       </div>
 

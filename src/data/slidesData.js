@@ -2,6 +2,8 @@
 import brotherhoodImg from '../images/brotherhood.png'
 import rafaNadalImg from '../images/rafaNadal.png'
 import rollingImg from '../images/rolling.png'
+import surfSpiritImg from '../images/surfSpirit.png'
+import opKiloImg from'../images/opKilo.png'
 
 const slidesCommercials = [
 
@@ -33,7 +35,7 @@ const slidesCommercials = [
         id: 3,
         title: "This Is Us",
         client: "Surf Spirit",
-        img: brotherhoodImg,
+        img: surfSpiritImg,
         imgAlt: "Surf Spirit",
     },
 
@@ -41,7 +43,7 @@ const slidesCommercials = [
         id: 4,
         title: "Navidad",
         client: "OP Kilo",
-        img: brotherhoodImg,
+        img: opKiloImg,
         imgAlt:  "OP Kilo",
     },
 

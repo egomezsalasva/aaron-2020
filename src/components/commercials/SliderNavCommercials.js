@@ -1,7 +1,8 @@
 //IMPORTS
 //-Modules
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
+import gsap from 'gsap/all'
 //-Data
 import { slidesCommercials } from '../../data/slidesData'
  
@@ -57,25 +58,46 @@ const Wrapper = styled.div`
 
 
 //MAIN COMPONENT
-const SliderNavCommercials = () => {
+const SliderNavCommercials = ({currentSlide}) => {
 
-    // const [currentSlide, setCurrentSlide] = useState(0)
+    const navItemTl = gsap.timeline()
 
+    let navItemRef = [];
+
+    let navItemRef0 = useRef(null)
+    let navItemRef1 = useRef(null)
+    let navItemRef2 = useRef(null)
+    let navItemRef3 = useRef(null)
+    let navItemRef4 = useRef(null)
+    
+    if(currentSlide === 0){
+        navItemTl.to( navItemRef0.current, { duration: 1, y: 200 } )
+    }
 
     return (
         <Wrapper>
             <div className="sliderNav">
                 <ul className="navContainer">
 
-                    {/* <li className="navItem navCurrent">
+                    <li className="navItem" ref={el => (navItemRef[0] = el)}>
                         <span></span>
-                    </li> */}
+                    </li>
 
-                    {slidesCommercials.map( slide => {
-                        return  <li className={"navItem"} key={slide.id}>
-                                    <span></span>
-                                </li>
-                    })}
+                    <li className="navItem" ref={navItemRef1}>
+                        <span></span>
+                    </li>
+
+                    <li className="navItem" ref={navItemRef2}>
+                        <span></span>
+                    </li>
+
+                    <li className="navItem" ref={navItemRef3}>
+                        <span></span>
+                    </li>
+
+                    <li className="navItem" ref={navItemRef4}>
+                        <span></span>
+                    </li>
                             
                 </ul>
             </div>
