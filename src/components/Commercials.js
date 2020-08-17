@@ -110,7 +110,7 @@ const Wrapper = styled.div`
       bottom: 33px;
       width: 60vw;
       height: 20px;
-      
+
       .navContainer{
         position: absolute;
         list-style: none;
@@ -118,6 +118,7 @@ const Wrapper = styled.div`
         bottom: 0;
         transform: translateX(-50%);
         overflow: hidden;
+        display: flex;
 
         .navItem{
           display: inline-block;
@@ -133,7 +134,7 @@ const Wrapper = styled.div`
             width: 80px;
             height: 12px;
             background: #BFBEB7;
-            transform: translateY(7px);
+            transform: translateY(5px);
           }
         }
       }
@@ -152,6 +153,7 @@ const Commercials = () => {
   let sliderRef = useRef(null)
   const slideTl = gsap.timeline({paused: true})
   const textTl = gsap.timeline()
+  const navTl = gsap.timeline()
 
   //Function to calculate the ViewportWidth in pixels
     const vw = (coef) => window.innerWidth * (coef/100)
@@ -205,29 +207,37 @@ const Commercials = () => {
   let infoRef2 = useRef()
   let infoRef3 = useRef()
   let infoRef4 = useRef()
+  let navItemRef0 = useRef()
+  let navItemRef1 = useRef()
+  let navItemRef2 = useRef()
+  let navItemRef3 = useRef()
+  let navItemRef4 = useRef()
+  const listOfNavItemRefs = [navItemRef0, navItemRef1, navItemRef2, navItemRef3, navItemRef4]
   //First Slide Autoanimate titles
     // useEffect( () => {
     //   textTl.to( infoRef01.current , { duration: 1, y: "-25px"})
     // }, [])
   //
 
+  // useEffect(() => {
+  //   let test = document.querySelector(".slide0")
+  //   console.log(test)
+  //   if(currentSlide === 0){
+  //     test.style.cursor = 'url("https://aarondormer.netlify.app/images/playCursor.png")'
+  //   } else {
+  //     test.style.cursor = "pointer"
+  //   }
+  // }, [currentSlide])
+
   textTl.addLabel("delay01", "+=0.5")
 
-  useEffect(() => {
-    let test = document.querySelector(".slide0")
-    console.log(test)
-    if(currentSlide === 0){
-      test.style.cursor = 'url("https://aarondormer.netlify.app/images/playCursor.png")'
-    } else {
-      test.style.cursor = "pointer"
-    }
-  }, [currentSlide])
-
-
   if(currentSlide === 0){
-    textTl.to( infoRef1.current , { duration: 1, y: "0px"})
-          .to( infoRef0.current , { duration: 1, y: "-25px"}, "delay01");
+    textTl.to( infoRef1.current, { duration: 1, y: "0px"})
+          .to( infoRef0.current, { duration: 1, y: "-25px"}, "delay01")
+    navTl.to( listOfNavItemRefs[0].current, { duration: 0.75, transform: "translateY(3px)", background: "black" })
+          // .to( listOfNavItemRefs.splice(1))
   }
+
   if(currentSlide === 1){
     textTl.to( infoRef0.current , { duration: 1, y: "0px"})    
           .to( infoRef1.current , { duration: 1, y: "-25px"}, "delay01")
@@ -247,13 +257,6 @@ const Commercials = () => {
     textTl.to( infoRef3.current , { duration: 1, y: "0px"})
           .to( infoRef4.current , { duration: 1, y: "-25px"}, "delay01")
   }
-
-
-  let navItemRef0 = useRef()
-  let navItemRef1 = useRef()
-  let navItemRef2 = useRef()
-  let navItemRef3 = useRef()
-  let navItemRef4 = useRef()
 
   return (
     <Wrapper>
@@ -324,9 +327,7 @@ const Commercials = () => {
         {/* <SliderNavCommercials currentSlide={currentSlide}/> */}
         <div className="sliderNav">
           <ul className="navContainer">
-            <li className="navItem" ref={navItemRef0}>
-                <span></span>
-            </li>
+            <li className="navItem"><span ref={navItemRef0}></span></li>
 
             <li className="navItem" ref={navItemRef1}>
                 <span></span>

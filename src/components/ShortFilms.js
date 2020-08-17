@@ -83,7 +83,6 @@ const Wrapper = styled.div`
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity:0.33;
           }
         } 
       }
